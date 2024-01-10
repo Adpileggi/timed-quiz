@@ -10,3 +10,27 @@ header ul {
     padding: 20px;
 }
 
+header h1 {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  text-align: center;
+  font-size: 40px;
+}
+
+main {
+  display: flex;
+  justify-content: center
+}
+
+main div {
+  flex-direction: column;
+  padding: 5px;
+}
+
+footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  padding: 20px;
+}
