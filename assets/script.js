@@ -26,4 +26,45 @@ function countdown() {
     
 }
 
+// make a start button
+
 // make questions
+const questions = [
+    {
+        question1: "What is the JavaScript file extension?",
+        choices: ["a. .html", "b. .css", "c. .js", "d. .md",],
+        answer: "c. .js"
+    },
+
+    {
+        question2: "An array in Java Script starts at which number?",
+        choices: ["a. [3]", "b. [2]", "c. [1]", "d. [0]",],
+        answer: "d. [0]"
+    },
+
+    {
+        question3: "JavaScript objects are contained in:",
+        choices: ["a. {}", "b. []", "c. <>", "d. \\",],
+        answer: "a. {}"
+    },
+
+    {
+        question4: "JavaScript values are:",
+        choices: ["a. Numbers", "b. Strings", "c.Boolean", "d. All the above",],
+        answer: "d. All the above"
+    },
+
+    {
+        question5: "Which is an example of a JavaScript event",
+        choices: ["a. Alert", "b. Click", "c. Warning", "d. None of the above",],
+        answer: "b. Click"
+    },
+]
+
+// make function add questions, and correct and incorrect answers
+
+// track score and time
+
+// save local data for highscores
+
+// 
