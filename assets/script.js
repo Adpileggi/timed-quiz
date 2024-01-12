@@ -1,17 +1,31 @@
 var time = document.querySelector(".time");
 var score = document.querySelector(".score");
+
+var startQuiz = document.querySelector(".startQuiz");
+var startBtn = document.querySelector(".startBtn")
+
+var questionArea = document.querySelector(".questionArea")
 var question = document.querySelector(".question");
 var ans1 = document.querySelector(".answer-1");
 var ans2 = document.querySelector(".answer-2");
 var ans3 = document.querySelector(".answer-3");
 var ans4 = document.querySelector(".answer-4");
+
 var highScore = document.querySelector(".highscore");
+
+// list variables
+
 
 // make timer
 
-
     // allowe 90 seconds for quiz
-function countdown() {
+    
+function newQuiz(event) {
+    event.preventDefault();
+    
+        startQuiz.style.display = "none";
+        questionArea.style.display = "block";
+
     var totalTime = 90;
 
     var timeInterval = setInterval(function () {
@@ -25,8 +39,6 @@ function countdown() {
     }, 1000);
     
 }
-
-// make a start button
 
 // make questions
 const questions = [
@@ -61,7 +73,13 @@ const questions = [
     },
 ]
 
+// make a start button
+
+startBtn.addEventListener("click", newQuiz);
+
+
 // make function add questions, and correct and incorrect answers
+
 
 // track score and time
 

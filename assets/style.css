@@ -18,6 +18,12 @@ header h1 {
   font-size: 40px;
 }
 
+section {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
 main {
   display: flex;
   justify-content: center
