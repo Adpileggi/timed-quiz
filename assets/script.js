@@ -10,6 +10,10 @@ var choiceA = document.querySelector(".answer-1");
 var choiceB = document.querySelector(".answer-2");
 var choiceC = document.querySelector(".answer-3");
 var choiceD = document.querySelector(".answer-4");
+
+var endOfGame = document.querySelector(".game-over")
+var initals = document.querySelector(".initals-here")
+
 var highScore = document.querySelector(".highscore");
 
 var currentQuestion;
@@ -51,11 +55,15 @@ const questions = [
 ]
 // select a random question from the array
 function randomQuestion() {
+    if (questions.length === 0) {
+        return null;
+    } else {
 var randomInt = Math.floor(Math.random() * questions.length)
         var selectedQuestion = questions[randomInt];
         questions.splice(randomInt, 1);
         currentQuestion = selectedQuestion;
         return selectedQuestion;
+    }
 }
 
 // loops to check answer of current question, presents next question 
@@ -64,16 +72,47 @@ for (var i = 0; i < choices.length; i++) {
         if(event.target.textContent === currentQuestion.answer) {
             alert("correct choice")
             currentQuestion = randomQuestion();
-            nextQuestoin();
+            // nextQuestoin();
+            correctChoice();
             // selectedCorrect(event.target);
         } else {
             alert('wrong choice')
             currentQuestion = randomQuestion();
-            nextQuestoin();
+            // nextQuestoin();
+            wrongChoice();
             // selectedWrong(event.target)
         }
     })
 }
+
+// if correct add score
+function correctChoice() {
+    totalScore++;
+    score.textContent = "Score: " + totalScore;
+    if (currentQuestion !==null) {
+    nextQuestoin();
+    } else {
+        gameOver();
+    }
+}
+// if incorrect subtract time
+function wrongChoice() {
+    totalTime-=15;
+    if (currentQuestion !==null) {
+    nextQuestoin();
+    } else {
+        gameOver();
+    }
+}
+
+// make game over 
+function gameOver(){
+questionArea.style.display = "none";
+endOfGame.style.display = "block";
+
+totalTime = 0;
+
+};
 
 function nextQuestoin() {
 
@@ -82,7 +121,7 @@ function nextQuestoin() {
     choiceB.textContent = currentQuestion.choice[1]
     choiceC.textContent = currentQuestion.choice[2]
     choiceD.textContent = currentQuestion.choice[3]
-}
+};
 
 // list variables
 
@@ -106,6 +145,7 @@ function newQuiz(event) {
      } else {
         time.textContent = 'Out of time!';
         clearInterval(timeInterval);
+        gameOver()
      }
     }, 1000);
     currentQuestion = randomQuestion();
