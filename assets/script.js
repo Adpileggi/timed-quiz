@@ -13,8 +13,10 @@ var choiceD = document.querySelector(".answer-4");
 
 var endOfGame = document.querySelector(".game-over")
 var initals = document.querySelector(".initals-here")
+var submitBtn = document.querySelector(".submit-btn")
 
 var highScore = document.querySelector(".highscore");
+var highScoreh2 = document.querySelector(".highScoreh2")
 
 var currentQuestion;
 var totalTime = 90;
@@ -114,6 +116,48 @@ totalTime = 0;
 
 };
 
+// local storage event/function
+submitBtn.addEventListener('click', function(event) {
+    var userInfo = { 
+        userIntial: initals.value.trim(),
+        userScore: totalScore,
+    };
+
+    var lastInfo = JSON.parse(localStorage.getItem('userInfo'));
+    if (lastInfo === null) {
+        lastInfo = [];
+        lastInfo.push(userInfo);
+    } else {
+        lastInfo.push(userInfo);
+    }
+
+    localStorage.setItem('userInfo', JSON.stringify(lastInfo));
+
+    displayHighScore();
+
+});
+
+function displayHighScore() {
+    highScoreh2.style.display = "block"
+
+    var lastInfo = JSON.parse(localStorage.getItem('userInfo'));
+
+    for (var i = 0; i < lastInfo.length; i++){
+        var displayInfo = [];
+        displayInfo = lastInfo[i];
+
+        var ul = document.createElement('ul');
+        highScore.appendChild(ul);
+
+        var li = document.createElement('li');
+        li.textContent = displayInfo.userIntial + " - Score: " + displayInfo.userScore;
+        ul.appendChild(li);        
+
+    }
+
+    // highScore.textContent = 'Highscore: ' + 
+}
+
 function nextQuestoin() {
 
     ask.textContent = currentQuestion.question;
@@ -133,17 +177,17 @@ function nextQuestoin() {
 startBtn.addEventListener("click", newQuiz);
 
 function newQuiz(event) {
-    // event.preventDefault();
-       console.log(questions)
+    // event.preventDefault(); 
     startQuiz.style.display = "none";
-        questionArea.style.display = "block";
-    
+    questionArea.style.display = "block";
+    highScoreh2.style.display = "none"
+
     var timeInterval = setInterval(function () {
     if (totalTime > 1) {
         time.textContent = 'Time left: ' + totalTime;
         totalTime--;
      } else {
-        time.textContent = 'Out of time!';
+        time.textContent = 'End of Quiz';
         clearInterval(timeInterval);
         gameOver()
      }
