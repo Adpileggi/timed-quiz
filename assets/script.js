@@ -55,6 +55,35 @@ const questions = [
         answer: "b. Click"
     },
 ]
+
+// make a start button
+
+startBtn.addEventListener("click", newQuiz);
+
+// make timer
+
+function newQuiz(event) {
+    // event.preventDefault(); 
+    startQuiz.style.display = "none";
+    questionArea.style.display = "block";
+    highScoreh2.style.display = "none"
+
+    var timeInterval = setInterval(function () {
+    if (totalTime > 1) {
+        time.textContent = 'Time left: ' + totalTime;
+        totalTime--;
+     } else {
+        time.textContent = 'End of Quiz';
+        clearInterval(timeInterval);
+        gameOver()
+     }
+    }, 1000);
+    currentQuestion = randomQuestion();
+    nextQuestoin();
+
+}
+
+
 // select a random question from the array
 function randomQuestion() {
     if (questions.length === 0) {
@@ -67,6 +96,16 @@ var randomInt = Math.floor(Math.random() * questions.length)
         return selectedQuestion;
     }
 }
+
+// populate Questions
+function nextQuestoin() {
+
+    ask.textContent = currentQuestion.question;
+    choiceA.textContent = currentQuestion.choice[0]
+    choiceB.textContent = currentQuestion.choice[1]
+    choiceC.textContent = currentQuestion.choice[2]
+    choiceD.textContent = currentQuestion.choice[3]
+};
 
 // loops to check answer of current question, presents next question 
 for (var i = 0; i < choices.length; i++) {
@@ -116,7 +155,7 @@ totalTime = 0;
 
 };
 
-// local storage event/function
+// local storage for initals and score
 submitBtn.addEventListener('click', function(event) {
     var userInfo = { 
         userIntial: initals.value.trim(),
@@ -137,6 +176,7 @@ submitBtn.addEventListener('click', function(event) {
 
 });
 
+// displays initals and scores from local storage
 function displayHighScore() {
     highScoreh2.style.display = "block"
 
@@ -154,55 +194,4 @@ function displayHighScore() {
         ul.appendChild(li);        
 
     }
-
-    // highScore.textContent = 'Highscore: ' + 
 }
-
-function nextQuestoin() {
-
-    ask.textContent = currentQuestion.question;
-    choiceA.textContent = currentQuestion.choice[0]
-    choiceB.textContent = currentQuestion.choice[1]
-    choiceC.textContent = currentQuestion.choice[2]
-    choiceD.textContent = currentQuestion.choice[3]
-};
-
-// list variables
-
-
-
-// make a start button
-// make timer
-// allow 90 seconds for quiz
-startBtn.addEventListener("click", newQuiz);
-
-function newQuiz(event) {
-    // event.preventDefault(); 
-    startQuiz.style.display = "none";
-    questionArea.style.display = "block";
-    highScoreh2.style.display = "none"
-
-    var timeInterval = setInterval(function () {
-    if (totalTime > 1) {
-        time.textContent = 'Time left: ' + totalTime;
-        totalTime--;
-     } else {
-        time.textContent = 'End of Quiz';
-        clearInterval(timeInterval);
-        gameOver()
-     }
-    }, 1000);
-    currentQuestion = randomQuestion();
-    nextQuestoin();
-
-}
-
-// track score and time
-
-// save local data for highscores
-
-// 
-
-
-
-
