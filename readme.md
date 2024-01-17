@@ -14,7 +14,7 @@ When the user loads the [webpage](https://adpileggi.github.io/timed-quiz/), they
 ![webpage preview](assets/timedquiz.png)
 
 ## Credits
-Collaborated with: Sergei Malyshka
+Collaborated with: Sergei Malyshka and Sachin Jhaveri
 
 ## Liscense
 Please refer to the license in the repo
